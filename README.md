@@ -1,42 +1,162 @@
-# Create React Express App
+# How to Scaffold a Boilerplate MERN Application and Deploy to Heroku
+https://stormy-beach-74916.herokuapp.com/
 
-## About This Boilerplate
-
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
-
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
-
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following commands:
-
+## Initialize Your Project with npm
 ```
-yarn install
-cd client
-yarn install
-cd ..
-``
-
-After both installations complete, run the following command in your terminal:
-
+mkdir mern
+cd mern
+npm init
 ```
-yarn start
+During the init process you will be prompted to add a GitHub repository. Now would be a good time to make a new project on GitHub. Add the repo link to your package.json when prompted.
+
+## Initialize Your Project with Git
 ```
-
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-After confirming that you have an up to date git repository and a Heroku app created, complete the following:
-
-1. Build the React app for production by running the following command:
-
+git init
+git remote add origin <URL-to-your-repo>
 ```
-yarn build
+Add `node_modules` to your `.gitignore`.
+
+## Set Up a Simple Express Server
+```
+npm install express --save
+```
+Add a server.js:
+```
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send("Hello World!");
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT);
 ```
 
-2. Add and commit all changes to git
+Start the server and navigate to localhost:3001 to verify that it works. You don't need to use port 3001, but don't use 3000. That's the default for Create React App.
 
-3. Push to Heroku
+## Deploy to Heroku
+Do not wait until the last minute to deploy! Let’s deploy this now so we can test deployment periodically.
 
-If all previous steps were followed correctly, your application should be deployed to Heroku!
+Update package.json:
+```
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node server.js"
+  },
+```
+Then log into Heroku via the command line and create a new app:
+```
+heroku login
+heroku create
+```
+
+Verify the creation of your Heroku app by running `git remote -v`.
+
+Then run the following:
+```
+git add .
+git commit -m “First”
+git push -u origin master
+git push heroku master
+```
+Navigate to the URL provided to verify deployment.
+
+In the future:
+```
+git add .
+git commit -m “Ch-ch-ch-changes…”
+git push heroku master
+```
+
+## MongoDB
+
+Log into Heroku.com and find your app. Under Resources, search for mLab in the Add-ons input field and add it as a Provision. If there are no results, you need to add a credit card to your account. Don't worry, it's free.
+
+Just for fun, under Settings, reveal your app config variables. There it is, our MongoDB environment variable, `MONGODB_URI`. You will see how that is used below.
+
+Install Mongoose:
+`npm install --save mongoose`
+
+Add to server.js:
+```
+const mongoose = require('mongoose');
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/mern",
+  {
+    useMongoClient: true
+  }
+);
+
+```
+Add `models` and `routes` directories to your app:
+
+`mkdir models routes`
+
+To these add placeholder `index.js` files:
+
+`touch models/index.js routes/index.js`
+
+TODO: Basic API route && Schema demos, but for the time being RTFM: https://github.com/Automattic/mongoose#overview
+
+## React
+
+Install Create React App if you don't already have it:
+
+`npm install -g create-react-app`
+
+From within your the root directory of your app, run
+
+`create-react-app client`
+
+Now let's connect the front to the back using concurrently and a proxy:
+
+`npm install --save concurrently`
+
+To the package.json in the root directory of your app, add two new scripts:
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
+  },
+```
+
+To the package.json in your client directory, just below "private", add:
+
+`"proxy": "http://localhost:3001/",`
+
+From here you will start your app from its root directory with:
+`npm run dev`
+
+This will start both servers _concurrently_. Try it!
+
+## Heroku, Again
+
+Add the path package:
+
+`npm install --save path`
+
+In server.js, replace the 'Hello World!' get route with the following:
+```
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+```
+All requests will be met with the index.html file as a response. From there, you will use ReactRouter.
+
+To the package.json in the root directory of your app, add one more script:
+```
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+```
+See also: https://devcenter.heroku.com/articles/nodejs-support#customizing-the-build-process
+
+Add, commit and push to Heroku. Verify that your app builds and is now live.
+
+Happy routing!
