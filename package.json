@@ -24,9 +24,9 @@
   "author": "Jared Nielsen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nielsenjared/mern/issues"
+    "url": "https://github.com/fitbez/social-momsies/issues"
   },
-  "homepage": "https://github.com/nielsenjared/mern#readme",
+  "homepage": "https://github.com/fitbez/social-momsies#readme",
   "dependencies": {
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
