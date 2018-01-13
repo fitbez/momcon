@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fitbez/social-momsies.git"
+    "url": "git+https://github.com/nielsenjared/mern.git"
   },
   "keywords": [
     "mern",
@@ -24,9 +24,9 @@
   "author": "Jared Nielsen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fitbez/social-momsies/issues"
+    "url": "https://github.com/nielsenjared/mern/issues"
   },
-  "homepage": "https://github.com/fitbez/social-momsies#readme",
+  "homepage": "https://github.com/nielsenjared/mern#readme",
   "dependencies": {
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
