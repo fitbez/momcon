@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import Nav from './Nav';
 // TODO - add proptypes
 
@@ -11,7 +12,12 @@ class Home extends Component {
 		return (
 			<div className="app">
 				<Nav />
-				<h3>Here</h3>
+				<div className="main">
+					<p>Main description about the app will go here</p>
+				</div>
+				<div>
+					<Link to="signup"><div className="signup">Sign Up</div></Link>
+				</div>
 	      {/*<Header *user={this.state.user} />*/}
 	      {/* LINKS to our different 'pages' */}
 	      {/*<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />*/}

@@ -18,6 +18,52 @@ body {
   height: 100px;
   align-items: center;
   width: 90%;
-  padding: 5% 0;
+  padding: 0 5%;
   justify-content: space-between;
+}
+
+.main {
+  background: #fafafa;
+  min-height: 300px;
+}
+
+.signup {
+  height: 40px;
+  line-height: 40px;
+  background: #0f80c0;
+  color: #fff;
+  text-align: center;
+  width: 30%;
+  min-width: 80px;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.SignupForm {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+
+.field-row {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-row input[type="text"], .field-row input[type="password"] {
+  height: 30px;
+  outline: 0;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  padding: 0 5px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  background: #0f80c0;
+  border: 0;
+  outline: 0;
 }
