@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({ user }) => {
   return(
     <nav className="navbar">
       <div className="logo">LOGO</div>
       <div>
-        <Link to="login">Log In</Link>
+        {
+          user && user._id ? <Link to="logout">Log Out</Link> : <Link to="login">Log In</Link>
+        }
       </div>
     </nav>
   )

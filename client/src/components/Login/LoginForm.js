@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom';
+import axios from 'axios';
 import Nav from '../Nav';
 // import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
-import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_pressed_web.png'
+import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_pressed_web.png';
+
+const host = "http://localhost:8080";
+
 class LoginForm extends Component {
 	constructor() {
 		super()
 		this.state = {
 			username: '',
 			password: '',
-			redirectTo: null
+			redirectTo: null,
+			message: ''
 		}
 		// this.googleSignin = this.googleSignin.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,14 +28,33 @@ class LoginForm extends Component {
 	}
 
 	handleSubmit(event) {
-		event.preventDefault()
-		console.log('handleSubmit')
-		this.props._login(this.state.username, this.state.password)
-		this.setState({
-			redirectTo: '/'
-		})
+		event.preventDefault();
+		const { username, password } = this.state;
+		axios
+			.post(`${host}/auth/login`, {
+				username,
+				password
+			})
+			.then(response => {
+				if (response.status === 200 && response.data.user) {
+					// update the state
+					this.setState({
+						message: 'Login successful'
+					});
+					setTimeout(() => {
+						this.props._saveUser(response.data.user)
+					}, 3000);
+				} else {
+					this.setState({
+						message: 'Invalid login'
+					});
+				}
+			}).catch(() => {
+				this.setState({
+					message: 'Invalid login'
+				});
+			})
 	}
-
 	render() {
 		if (this.props.user && this.props.user._id) {
 			return <Redirect to="main" />
@@ -77,8 +101,8 @@ class LoginForm extends Component {
 						</Link>
 					</div>
 				</div>
-				</div>
 			</div>
+		</div>
 		)
 	}
 }

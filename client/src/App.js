@@ -56,10 +56,9 @@ class App extends Component {
 		super()
 		this.state = {
 			loggedIn: false,
-			user: null
+			user: 'loading'
 		}
 		this._logout = this._logout.bind(this);
-		this._login = this._login.bind(this);
 		this._saveUser = this._saveUser.bind(this);
 	}
 	componentDidMount() {
@@ -94,23 +93,7 @@ class App extends Component {
 		})
 	}
 
-	_login(username, password) {
-		axios
-			.post(`${host}/auth/login`, {
-				username,
-				password
-			})
-			.then(response => {
-				console.log(response)
-				if (response.status === 200) {
-					// update the state
-					this.setState({
-						loggedIn: true,
-						user: response.data.user
-					})
-				}
-			})
-	}
+
 
 	_saveUser(user) {
 		this.setState({
@@ -135,7 +118,8 @@ class App extends Component {
 		        path="/login"
 		        render={() =>
 		          <LoginForm
-		            _login={this._login}
+								_saveUser={this._saveUser}
+								user={this.state.user}
 		            _googleSignin={this._googleSignin}
 		          />}
 		      />
