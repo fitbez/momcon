@@ -3,3 +3,21 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.app {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 500px;
+    margin: auto;
+    border: 1px solid #ccc;
+}
+
+.navbar {
+  display: flex;
+  background: #ccc;
+  height: 100px;
+  align-items: center;
+  width: 90%;
+  padding: 5% 0;
+  justify-content: space-between;
+}

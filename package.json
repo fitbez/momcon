@@ -1,7 +1,7 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "MongoDB Express React Node app.",
+  "description": " MongoDB Express React Node app.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,7 @@
     "express",
     "node"
   ],
-  "author": "Fitsum",
+  "author": "Omar, Fitsum, Stuart, Esperanza",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fitbez/social-momsies/issues"
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/fitbez/social-momsies#readme",
   "dependencies": {
     "concurrently": "^3.5.1",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "mongoose": "^4.13.9",
     "path": "^0.12.7"
