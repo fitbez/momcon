@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom';
+import Nav from '../Nav';
 // import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
 import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_pressed_web.png'
 class LoginForm extends Component {
@@ -31,13 +32,17 @@ class LoginForm extends Component {
 	}
 
 	render() {
-		if (this.state.redirectTo) {
-			return <Redirect to={{ pathname: this.state.redirectTo }} />
-		} else {
-			return (
-				<div className="LoginForm">
+		if (this.props.user && this.props.user._id) {
+			return <Redirect to="main" />
+		}
+		return (
+			<div className="app">
+				<Nav />
+				<div className="main">
+				<div className="SignupForm">
 					<h1>Login form</h1>
-					<form>
+
+					<div className="field-row">
 						<label htmlFor="username">Username: </label>
 						<input
 							type="text"
@@ -45,6 +50,9 @@ class LoginForm extends Component {
 							value={this.state.username}
 							onChange={this.handleChange}
 						/>
+					</div>
+
+					<div className="field-row">
 						<label htmlFor="password">Password: </label>
 						<input
 							type="password"
@@ -52,15 +60,26 @@ class LoginForm extends Component {
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
-						<button onClick={this.handleSubmit}>Login</button>
-					</form>
-					<Link to="/auth/google">
-						{/* <GoogleButton /> */}
-						<img src={googleButton} alt="sign into Google Button" />
-					</Link>
+					</div>
+
+					<div className="field-row">
+						{this.state.message}
+					</div>
+
+					<div className="field-row">
+						<button className="btn" onClick={this.handleSubmit}>Login</button>
+					</div>
+
+					<div>
+						<Link to="/auth/google">
+							{/* <GoogleButton /> */}
+							<img src={googleButton} alt="sign into Google Button" />
+						</Link>
+					</div>
 				</div>
-			)
-		}
+				</div>
+			</div>
+		)
 	}
 }
 

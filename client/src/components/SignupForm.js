@@ -10,7 +10,8 @@ class SignupForm extends Component {
 			username: '',
 			password: '',
 			confirmPassword: '',
-			redirectTo: null
+			redirectTo: null,
+			message: ''
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -30,19 +31,23 @@ class SignupForm extends Component {
 			})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
-					console.log('youre good')
+				if (!response.data.error && response.status === 200) {
 					this.setState({
-						redirectTo: '/login'
-					})
+						message: 'Registration successful'
+					});
+					setTimeout(() => {
+						this.props._saveUser(response.data)
+					}, 3000);
 				} else {
-					console.log('duplicate')
+					this.setState({
+						message: response.data.error
+					});
 				}
 			})
 	}
 	render() {
-		if (this.state.redirectTo) {
-			return <Redirect to={{ pathname: this.state.redirectTo }} />
+		if (this.props.user && this.props.user._id) {
+			return <Redirect to="main" />
 		}
 		return (
 			<div className="app">
@@ -78,6 +83,10 @@ class SignupForm extends Component {
 							value={this.state.confirmPassword}
 							onChange={this.handleChange}
 						/>
+					</div>
+
+					<div className="field-row">
+						{this.state.message}
 					</div>
 
 					<div className="field-row">

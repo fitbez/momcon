@@ -6,6 +6,7 @@ import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
+import Main from './components/Main';
 const host = "http://localhost:8080";
 /*const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -57,8 +58,9 @@ class App extends Component {
 			loggedIn: false,
 			user: null
 		}
-		this._logout = this._logout.bind(this)
-		this._login = this._login.bind(this)
+		this._logout = this._logout.bind(this);
+		this._login = this._login.bind(this);
+		this._saveUser = this._saveUser.bind(this);
 	}
 	componentDidMount() {
 		axios.get(`${host}/auth/user`).then(response => {
@@ -110,12 +112,24 @@ class App extends Component {
 			})
 	}
 
+	_saveUser(user) {
+		this.setState({
+			loggedIn: true,
+			user
+		})
+	}
+
 	render() {
 		return (
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route exact path="/signup" component={SignupForm} />
+					<Route exact path="/signup" render={() =>
+						<SignupForm
+							_saveUser={this._saveUser}
+							user={this.state.user}
+							/>
+					} />
 					<Route
 		        exact
 		        path="/login"
@@ -125,6 +139,13 @@ class App extends Component {
 		            _googleSignin={this._googleSignin}
 		          />}
 		      />
+					<Route
+						path="/main"
+						render={() =>
+							<Main
+								user={this.state.user}
+								/>
+						} />
 				</Switch>
 
 			</BrowserRouter>
