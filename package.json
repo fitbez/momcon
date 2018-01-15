@@ -1,7 +1,7 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "Boilerplate MongoDB Express React Node app.",
+  "description": "MongoDB Express React Node app.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fitbez/mern.git"
+    "url": "git+https://github.com/fitbez/social-momsies.git"
   },
   "keywords": [
     "mern",
@@ -24,9 +24,9 @@
   "author": "Fitsum",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fitbez/mern/issues"
+    "url": "https://github.com/fitbez/social-momsies/issues"
   },
-  "homepage": "https://github.com/fitbez/mern#readme",
+  "homepage": "https://github.com/fitbez/social-momsies#readme",
   "dependencies": {
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
