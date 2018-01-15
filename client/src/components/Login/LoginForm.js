@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../Nav';
 // import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
-import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_pressed_web.png';
+import googleButton from './google_signin_buttons/web/1x/btn_google_signin_red_pressed_web.png';
 
 const host = "http://localhost:8080";
 
