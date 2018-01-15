@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nielsenjared/mern.git"
+    "url": "git+https://github.com/fitbez/mern.git"
   },
   "keywords": [
     "mern",
@@ -21,12 +21,12 @@
     "express",
     "node"
   ],
-  "author": "Jared Nielsen",
+  "author": "Fitsum",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nielsenjared/mern/issues"
+    "url": "https://github.com/fitbez/mern/issues"
   },
-  "homepage": "https://github.com/nielsenjared/mern#readme",
+  "homepage": "https://github.com/fitbez/mern#readme",
   "dependencies": {
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
