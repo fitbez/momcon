@@ -21,6 +21,6 @@ class Main extends Component {
 		)
 	}
 }
-// try it again now
+
 
 export default Main;

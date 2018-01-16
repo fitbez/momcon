@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../Nav';
-// import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
 import googleButton from './google_signin_buttons/web/1x/btn_google_signin_red_pressed_web.png';
 
 const host = "http://localhost:8080";
@@ -46,12 +45,12 @@ class LoginForm extends Component {
 					}, 3000);
 				} else {
 					this.setState({
-						message: 'Invalid login'
+						message: 'Invalid login username or password'
 					});
 				}
 			}).catch(() => {
 				this.setState({
-					message: 'Invalid login'
+					message: 'Invalid username or password'
 				});
 			})
 	}
@@ -96,7 +95,7 @@ class LoginForm extends Component {
 
 					<div>
 						<Link to="/auth/google">
-							{/* <GoogleButton /> */}
+							{/*<GoogleButton /> */}
 							<img src={googleButton} alt="sign into Google Button" />
 						</Link>
 					</div>

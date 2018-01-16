@@ -56,7 +56,7 @@ class App extends Component {
 		super()
 		this.state = {
 			loggedIn: false,
-			user: 'loading'
+			user: 'null'
 		}
 		this._logout = this._logout.bind(this);
 		this._saveUser = this._saveUser.bind(this);

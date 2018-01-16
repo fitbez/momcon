@@ -14,8 +14,8 @@ body {
 
 .navbar {
   display: flex;
-  background: #ccc;
-  height: 100px;
+  background: tomato;
+  height: 50px;
   align-items: center;
   width: 90%;
   padding: 0 5%;
