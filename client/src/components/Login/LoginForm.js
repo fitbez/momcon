@@ -94,10 +94,10 @@ class LoginForm extends Component {
 					</div>
 
 					<div>
-						<Link to="/auth/google">
+						<a href="http://localhost:8080/auth/google">
 							{/*<GoogleButton /> */}
 							<img src={googleButton} alt="sign into Google Button" />
-						</Link>
+						</a>
 					</div>
 				</div>
 			</div>

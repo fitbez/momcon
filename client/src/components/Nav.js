@@ -8,6 +8,7 @@ const Nav = ({ user }) => {
       <div>
         {
           user && user._id ? <Link to="logout">Log Out</Link> : <Link to="login">Log In</Link>
+          
         }
       </div>
     </nav>
