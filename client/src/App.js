@@ -61,7 +61,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/" component={Home} />
+					<Route exact path="/" render={props => <Main user={this.state.user} />} />
 						{/*<Route exact path="/signup" render={() =>
 						<SignupForm
 							_saveUser={this._saveUser}
@@ -79,8 +79,9 @@ class App extends Component {
 		          />}
 		      />*/}
 					<Route
-						path="/main"
-						render={() => <Main user={this.state.user} />} />
+						path="/home"
+						component={Home}
+					/>
 				</Switch>
 
 			</BrowserRouter>
