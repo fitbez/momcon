@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../Nav';
@@ -7,23 +7,23 @@ import googleButton from './google_signin_buttons/web/1x/btn_google_signin_red_p
 const host = "http://localhost:8080";
 
 class LoginForm extends Component {
+	
 	constructor() {
-		super()
+		super();
 		this.state = {
 			username: '',
 			password: '',
 			redirectTo: null,
 			message: ''
-		}
-		// this.googleSignin = this.googleSignin.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
+		};
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value
-		})
+		});
 	}
 
 	handleSubmit(event) {
@@ -52,11 +52,12 @@ class LoginForm extends Component {
 				this.setState({
 					message: 'Invalid username or password'
 				});
-			})
+			});
 	}
+	
 	render() {
 		if (this.props.user && this.props.user._id) {
-			return <Redirect to="main" />
+			return <Redirect to="main" />;
 		}
 		return (
 			<div className="app">
@@ -102,8 +103,9 @@ class LoginForm extends Component {
 				</div>
 			</div>
 		</div>
-		)
+		);
 	}
+	
 }
 
-export default LoginForm
+export default LoginForm;
